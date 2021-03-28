@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/sh_line_header"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ly_titulo_cabecera"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim_45dp"
+        android:layout_gravity="center"
+        android:background="@drawable/drw_shaded_line"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Información Personal"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimaryDark" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ly_contenido"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="@dimen/dim_10dp"
+        android:layout_marginTop="@dimen/dim_12dp"
+        android:layout_marginRight="@dimen/dim_10dp"
+        android:background="@color/colorWhite2"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dim_8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ACÁ VA LA INFORMACIÓN PERSONAL" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ly_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dim_15dp"
+        android:background="@drawable/drw_line_header_nav_bt"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_cerrar"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dim_2dp"
+            android:layout_marginEnd="@dimen/dim_12dp"
+            android:layout_weight="0.2"
+            android:background="@android:color/transparent"
+            android:gravity="end|center"
+            android:text="Cerrar"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/dim_text_size_14" />
+    </LinearLayout>
+</LinearLayout>

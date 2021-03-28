@@ -1,11 +1,15 @@
 package com.upc.healthyapp.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -18,6 +22,7 @@ import com.upc.healthyapp.fragments.navigation.DiagnosticFragment;
 import com.upc.healthyapp.fragments.navigation.HomeFragment;
 import com.upc.healthyapp.fragments.navigation.MapsFragment;
 import com.upc.healthyapp.fragments.navigation.RecetaFragment;
+import com.upc.healthyapp.modals.InfoPersonalFragment;
 import com.upc.healthyapp.utilities.UtlFunciones;
 
 public class MainActivity extends AppCompatActivity{
@@ -39,6 +44,8 @@ public class MainActivity extends AppCompatActivity{
 
         toolbar.setNavigationOnClickListener(v ->
                 UtlFunciones.IniciarActividad(this, LoginActivity.class, true));
+
+        setSupportActionBar(toolbar);
 
         citaFragment = new CitaFragment();
         diagnosticFragment = new DiagnosticFragment();
@@ -95,5 +102,25 @@ public class MainActivity extends AppCompatActivity{
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.content, fragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int iId = item.getItemId();
+        switch (iId) {
+            case R.id.menu_info:
+                FragmentManager fm = this.getSupportFragmentManager();
+                InfoPersonalFragment mInfoPersonalFragment = InfoPersonalFragment.newInstance();
+                //mInfoPersonalFragment.setTargetFragment(ActividadPrincipalFragment.this, 100);
+                mInfoPersonalFragment.show(fm, "fragment_dialog");
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
