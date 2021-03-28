@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#81d4fa</color>
+    <color name="colorPrimary">#009688</color>
     <color name="colorPrimaryDark">#4ba3c7</color>
     <color name="colorAccent">#b6ffff</color>
     <color name="colorSecondary">#f0f4c3</color>
@@ -34,9 +34,9 @@
     <color name="colorGreen1">#02c734</color>
     <color name="colorGreen2">#02cf36</color>
 
-    <color name="colorSkyBlue0">#87ceeb</color>
+    <color name="colorSkyBlue0">#FF2ED3C4</color>
     <color name="colorSkyBlue1">#baffff</color>
-    <color name="colorSkyBlue2">#549db9</color>
+    <color name="colorSkyBlue2">#009688</color>
 
     <color name="colorRed0">#B50C0C</color>
     <color name="colorRed1">#f92003</color>
