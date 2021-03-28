@@ -47,4 +47,6 @@
     <color name="colorBlack2">#8a000000</color>
 
     <color name="colorWhite">#ffffff</color>
+
+    <color name="colorBgInput">#F9F9F9</color>
 </resources>

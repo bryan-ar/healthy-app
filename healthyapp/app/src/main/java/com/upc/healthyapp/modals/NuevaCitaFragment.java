@@ -1,5 +1,6 @@
 package com.upc.healthyapp.modals;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -14,10 +15,12 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.upc.healthyapp.R;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -28,11 +31,10 @@ import java.util.Date;
  * create an instance of this fragment.
  */
 public class NuevaCitaFragment extends DialogFragment
-        implements View.OnClickListener {
+        implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
 
-    Calendar calendar;
-    CalendarView calendarView;
     Button btCerrar;
+    EditText etFecha;
 
     public NuevaCitaFragment() {
         // Required empty public constructor
@@ -65,49 +67,39 @@ public class NuevaCitaFragment extends DialogFragment
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         getDialog().setCancelable(false);
-        getDialog().setCanceledOnTouchOutside(false);
+        getDialog().setCanceledOnTouchOutside(true);
         return inflater.inflate(R.layout.fragment_nueva_cita, container);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        calendar = Calendar.getInstance();
-        calendar.set(Calendar.MONTH, Calendar.NOVEMBER);
-        calendar.set(Calendar.DAY_OF_MONTH, 9);
-        calendar.set(Calendar.YEAR, 2012);
-
-
-        calendar.add(Calendar.DAY_OF_MONTH, 1);
-        calendar.add(Calendar.YEAR, 1);
-
-
-        calendarView = view.findViewById(R.id.calendarView);
-
-        Button btnRange = view.findViewById(R.id.btnRange);
-        btnRange.setOnClickListener(this);
-
-        Button btnWithoutAnim = view.findViewById(R.id.btnWithoutAnim);
-        btnWithoutAnim.setOnClickListener(this);
-
-        Button btnWithAnim = view.findViewById(R.id.btnWithAnim);
-        btnWithAnim.setOnClickListener(this);
-
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
-
-                String msg = "Selected date Day: " + i2 + " Month : " + (i1 + 1) + " Year " + i;
-                Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
-
-
-            }
-        });
-
+        etFecha = view.findViewById(R.id.etFecha);
         btCerrar = view.findViewById(R.id.bt_cerrar);
+
+        etFecha.setOnClickListener(new isOnClickCalendar());
         btCerrar.setOnClickListener(new isOnClickCerrar());
 
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int dayOfMonth) {
+        Calendar mCalender = Calendar.getInstance();
+        mCalender.set(Calendar.YEAR, year);
+        mCalender.set(Calendar.MONTH, month);
+        mCalender.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(mCalender.getTime());
+        etFecha.setText(selectedDate);
+    }
+
+    class isOnClickCalendar implements View.OnClickListener{
+
+        @Override
+        public void onClick(View view) {
+            DatePicker mDatePickerDialogFragment = new DatePicker();
+            mDatePickerDialogFragment.show(getParentFragmentManager(), "DATE PICK");
+        }
     }
 
     class isOnClickCerrar implements View.OnClickListener{
@@ -120,42 +112,6 @@ public class NuevaCitaFragment extends DialogFragment
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btnWithAnim:
-                calendarView.setDate(calendar.getTimeInMillis(), true, true);
-                break;
 
-            case R.id.btnWithoutAnim:
-                calendar.set(Calendar.DAY_OF_MONTH, 12);
-                calendar.set(Calendar.YEAR, 2016);
-                calendar.add(Calendar.MONTH, Calendar.MARCH);
-                calendarView.setDate(calendar.getTimeInMillis(), false, false);
-                break;
-
-            case R.id.btnRange:
-
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DATE));
-                calendar = Calendar.getInstance();
-                calendar.set(Calendar.DATE, 25);
-                calendar.set(Calendar.HOUR_OF_DAY, 0);
-                long endOfMonth = calendar.getTimeInMillis();
-                calendar = Calendar.getInstance();
-                calendar.set(Calendar.DATE, 5);
-                calendar.set(Calendar.HOUR_OF_DAY, 0);
-                long startOfMonth = calendar.getTimeInMillis();
-                calendarView.setMaxDate(endOfMonth);
-                calendarView.setMinDate(startOfMonth);
-
-
-                String minDateString = new SimpleDateFormat("MM/dd/yyyy").format(new Date(calendarView.getMinDate()));
-                String maxDateString = new SimpleDateFormat("MM/dd/yyyy").format(new Date(calendarView.getMaxDate()));
-
-                Toast.makeText(getActivity(), "MMDDYYYY Min date - " + minDateString + " Max Date is " + maxDateString, Toast.LENGTH_LONG).show();
-
-                break;
-
-
-        }
     }
 }
