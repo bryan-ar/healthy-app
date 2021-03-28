@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false"
+        android:state_focused="false">
+        <shape android:innerRadiusRatio="1"
+            android:shape="rectangle" >
+            <solid android:color="@color/colorPrimary" />
+            <corners android:radius="@dimen/dim_5dp"/>
+            <padding android:bottom="@dimen/dim_5dp"
+                android:left="@dimen/dim_5dp"
+                android:right="@dimen/dim_5dp"
+                android:top="@dimen/dim_5dp" />
+        </shape>
+    </item>
+    <item android:state_pressed="false"
+        android:state_focused="true">
+        <shape android:innerRadiusRatio="3"
+            android:shape="rectangle" >
+            <solid android:color="@color/colorPrimaryDark" />
+            <corners android:radius="@dimen/dim_5dp"/>
+            <padding android:bottom="@dimen/dim_5dp"
+                android:left="@dimen/dim_5dp"
+                android:right="@dimen/dim_5dp"
+                android:top="@dimen/dim_5dp" />
+        </shape>
+    </item>
+    <item android:state_pressed="true"
+        android:state_focused="false">
+        <shape
+            android:innerRadiusRatio="1"
+            android:shape="rectangle" >
+            <solid android:color="@color/colorPrimary"/>
+            <corners android:radius="@dimen/dim_5dp"/>
+            <padding android:bottom="@dimen/dim_5dp"
+                android:left="@dimen/dim_5dp"
+                android:right="@dimen/dim_5dp"
+                android:top="@dimen/dim_5dp" />
+        </shape></item>
+</selector>
