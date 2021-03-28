@@ -17,7 +17,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/sh_custom_round_login"
+
+            android:background="@drawable/sh_backgroun_login"
             android:orientation="vertical">
 
             <LinearLayout
@@ -32,7 +33,18 @@
                     android:id="@+id/iv_logo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:src="@drawable/medical"
                     />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="HEALTHY APP"
+                    android:textColor="@color/colorSkyBlue0"
+                    android:textSize="25sp"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -45,9 +57,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:text="@string/str_login"
+                    android:text="Login"
                     android:textColor="@color/colorWhite0"
-                    android:textSize="@dimen/dim_text_size_16"
+                    android:textSize="16dp"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>

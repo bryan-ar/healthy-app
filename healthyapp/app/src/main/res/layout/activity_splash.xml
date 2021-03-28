@@ -23,7 +23,7 @@
             android:adjustViewBounds="true"
             android:contentDescription="@string/str_imagen"
             android:scaleType="fitXY"
-            android:src="@drawable/descarga"
+            android:src="@drawable/medical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
