@@ -23,6 +23,7 @@ import com.upc.healthyapp.fragments.navigation.HomeFragment;
 import com.upc.healthyapp.fragments.navigation.MapsFragment;
 import com.upc.healthyapp.fragments.navigation.RecetaFragment;
 import com.upc.healthyapp.modals.InfoPersonalFragment;
+import com.upc.healthyapp.modals.NuevaCitaFragment;
 import com.upc.healthyapp.utilities.UtlFunciones;
 
 public class MainActivity extends AppCompatActivity{
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity{
     private HomeFragment homeFragment;
     private MapsFragment mapsFragment;
     private RecetaFragment recetaFragment;
+    private boolean bAgregar = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,17 +58,29 @@ public class MainActivity extends AppCompatActivity{
         navigationView.addSpaceItem(new SpaceItem("", R.drawable.ic_baseline_event_note_24));
         navigationView.addSpaceItem(new SpaceItem("", R.drawable.ic_baseline_map_24));
         navigationView.addSpaceItem(new SpaceItem("", R.drawable.ic_baseline_fact_check_24));
+        navigationView.changeCurrentItem(-1);
+        setFragment(homeFragment);
 
         navigationView.setSpaceOnClickListener(new SpaceOnClickListener() {
             @Override
             public void onCentreButtonClick() {
                 setFragment(homeFragment);
-                Toast.makeText(MainActivity.this,"onCentreButtonClick", Toast.LENGTH_SHORT).show();
+                navigationView.changeCenterButtonIcon(R.drawable.ic_baseline_add_24);
+                navigationView.changeCurrentItem(-1);
+
+                if(bAgregar){
+                    FragmentManager fm = getSupportFragmentManager();
+                    NuevaCitaFragment mNuevaCitaFragment = NuevaCitaFragment.newInstance();
+                    mNuevaCitaFragment.show(fm, "fragment_dialog");
+                }else{
+                    bAgregar = true;
+                }
             }
 
             @Override
             public void onItemClick(int itemIndex, String itemName) {
-                Toast.makeText(MainActivity.this, itemIndex + " " + itemName, Toast.LENGTH_SHORT).show();
+                navigationView.changeCenterButtonIcon(R.drawable.ic_baseline_home_24);
+                bAgregar = false;
 
                 switch (itemIndex){
                     case 0:

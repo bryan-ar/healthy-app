@@ -20,28 +20,13 @@ import com.upc.healthyapp.models.CitaModel;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class HomeFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
     private RecyclerView courseRV;
     private ArrayList<CitaModel> citaModelArrayList;
-    private Button btNuevaCita;
 
     public HomeFragment() {
         // Required empty public constructor
-    }
-
-    public static HomeFragment newInstance() {
-        HomeFragment fragment = new HomeFragment();
-        return fragment;
     }
 
     @Override
@@ -81,14 +66,6 @@ public class HomeFragment extends Fragment {
         // in below two lines we are setting layoutmanager and adapter to our recycler view.
         courseRV.setLayoutManager(linearLayoutManager);
         courseRV.setAdapter(citasAdapter);
-
-        btNuevaCita = rootView.findViewById(R.id.btn_nueva_cita);
-        btNuevaCita.setOnClickListener(view -> {
-            FragmentManager fm = getActivity().getSupportFragmentManager();
-            NuevaCitaFragment mNuevaCitaFragment = NuevaCitaFragment.newInstance();
-            //mInfoPersonalFragment.setTargetFragment(ActividadPrincipalFragment.this, 100);
-            mNuevaCitaFragment.show(fm, "fragment_dialog");
-        });
 
         return rootView;
     }

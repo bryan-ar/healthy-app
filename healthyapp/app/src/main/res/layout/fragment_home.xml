@@ -13,18 +13,6 @@
         android:layout_height="match_parent" />
 
     <Button
-        android:id="@+id/btn_nueva_cita"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dim_60dp"
-        android:text="Nueva Cita"
-        android:textColor="@color/colorWhite"
-        android:textStyle="bold"
-        android:backgroundTint="@color/colorPrimaryDark"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/dim_10dp"
-        android:padding="@dimen/dim_5dp"/>
-
-    <Button
         android:id="@+id/btn_cita_curso"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dim_50dp"

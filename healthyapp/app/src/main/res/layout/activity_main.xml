@@ -48,7 +48,7 @@
         app:inactive_item_color="@color/colorBlack0"
         app:active_centre_button_icon_color="@color/colorWhite"
         app:space_background_color="@color/colorPrimaryDark"
-        app:centre_button_icon="@drawable/ic_baseline_home_24"
+        app:centre_button_icon="@drawable/ic_baseline_add_24"
         app:space_item_icon_size="@dimen/space_item_icon_default_size"
         app:inactive_centre_button_icon_color="@color/colorWhite"
         app:active_centre_button_background_color="#F44336"
