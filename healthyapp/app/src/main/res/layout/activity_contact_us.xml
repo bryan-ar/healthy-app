@@ -48,7 +48,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/dim_60dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_contact_person" />
+                android:src="@drawable/help" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -57,6 +57,7 @@
                 android:layout_marginTop="@dimen/dim_5dp"
                 android:gravity="center"
                 android:paddingTop="@dimen/dim_5dp"
+                android:textStyle="bold"
                 android:text="@string/str_contact_center"
                 android:textAllCaps="true"
                 android:textColor="@color/colorPrimaryDark"
