@@ -22,8 +22,8 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
-    private RecyclerView courseRV;
-    private ArrayList<CitaModel> citaModelArrayList;
+    private RecyclerView rvCitas;
+    private ArrayList<CitaModel> citasModelArrayList;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -40,32 +40,32 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        courseRV = rootView.findViewById(R.id.rvCitas);
+        rvCitas = rootView.findViewById(R.id.rvCitas);
 
-        citaModelArrayList = new ArrayList<>();
-        citaModelArrayList.add(new CitaModel("Doctor 1", "Paciente 1", "meet.google.com/grk-dghr-mdk",
+        citasModelArrayList = new ArrayList<>();
+        citasModelArrayList.add(new CitaModel("Doctor 1", "Paciente 1", "meet.google.com/grk-dghr-mdk",
                 "Marzo", "15", "10:00"));
-        citaModelArrayList.add(new CitaModel("Doctor 2", "Paciente 2", "meet.google.com/grk-dghr-mdk",
+        citasModelArrayList.add(new CitaModel("Doctor 2", "Paciente 2", "meet.google.com/grk-dghr-mdk",
                 "Marzo", "03", "14:00"));
-        citaModelArrayList.add(new CitaModel("Doctor 3", "Paciente 1", "meet.google.com/grk-dghr-mdk",
+        citasModelArrayList.add(new CitaModel("Doctor 3", "Paciente 1", "meet.google.com/grk-dghr-mdk",
                 "Marzo", "01", "08:30"));
-        citaModelArrayList.add(new CitaModel("Doctor 4", "Paciente 1", "meet.google.com/grk-dghr-mdk",
+        citasModelArrayList.add(new CitaModel("Doctor 4", "Paciente 1", "meet.google.com/grk-dghr-mdk",
                 "Febrero", "14", "09:30"));
-        citaModelArrayList.add(new CitaModel("Doctor 5", "Paciente 2", "meet.google.com/grk-dghr-mdk",
+        citasModelArrayList.add(new CitaModel("Doctor 5", "Paciente 2", "meet.google.com/grk-dghr-mdk",
                 "Febrero", "08", "16:00"));
-        citaModelArrayList.add(new CitaModel("Doctor 6", "Paciente 3", "meet.google.com/grk-dghr-mdk",
+        citasModelArrayList.add(new CitaModel("Doctor 6", "Paciente 3", "meet.google.com/grk-dghr-mdk",
                 "Enero", "18", "11:15"));
 
         // we are initializing our adapter class and passing our arraylist to it.
-        CitasAdapter citasAdapter = new CitasAdapter(getActivity(), citaModelArrayList);
+        CitasAdapter citasAdapter = new CitasAdapter(getActivity(), citasModelArrayList);
 
         // below line is for setting a layout manager for our recycler view.
         // here we are creating vertical list so we will provide orientation as vertical
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
 
         // in below two lines we are setting layoutmanager and adapter to our recycler view.
-        courseRV.setLayoutManager(linearLayoutManager);
-        courseRV.setAdapter(citasAdapter);
+        rvCitas.setLayoutManager(linearLayoutManager);
+        rvCitas.setAdapter(citasAdapter);
 
         return rootView;
     }

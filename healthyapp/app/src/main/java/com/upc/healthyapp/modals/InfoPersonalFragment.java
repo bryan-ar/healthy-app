@@ -38,13 +38,6 @@ public class InfoPersonalFragment extends DialogFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        boolean setFullScreen = false;
-
-        if (getArguments() != null) {
-            setFullScreen = getArguments().getBoolean("fullScreen");
-        }
-        if (setFullScreen)
-            setStyle(DialogFragment.STYLE_NORMAL, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
     }
 
     @Nullable

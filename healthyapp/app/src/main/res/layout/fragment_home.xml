@@ -4,24 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.navigation.HomeFragment"
-    android:layout_marginBottom="@dimen/dim_50dp">
+    tools:context=".fragments.navigation.HomeFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCitas"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <Button
-        android:id="@+id/btn_cita_curso"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dim_50dp"
-        android:text="Cita en Curso"
-        android:textColor="@color/colorWhite"
-        android:textStyle="bold"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/dim_10dp"
-        android:padding="@dimen/dim_5dp"
-        android:visibility="gone"/>
 
 </RelativeLayout>
