@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+
+
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim_60dp"
+        android:text="Síntomas y Recomendaciones"
+        android:textSize="@dimen/dim_20dp"
+        android:textAlignment="textStart"
+        android:padding="15dp"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        android:background="@color/colorPrimary"
+    />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="40dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registro de sintomas"
+            android:textColor="@color/colorBlack0"
+            android:textSize="@dimen/dim_text_size_20"
+            android:layout_marginTop="10dp"
+            />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1" >
+            <TableRow
+                >
+                <TextView
+                    android:text=""
+                    android:gravity="left"
+                    android:padding="3dip" />
+                <TextView
+                    android:text="Hora y Minuto"
+                    android:textColor="@color/colorBlack0"
+                    android:gravity="right"
+                    android:padding="3dip" />
+
+            </TableRow>
+            <TableRow
+
+                >
+
+                <TextView
+                    android:autoText="false"
+                    android:gravity="left"
+                    android:padding="3dip"
+                    android:text="Fiebre 39°"
+                    android:textColor="@color/colorBlack0" />
+
+                <TextView
+                    android:autoText="false"
+                    android:background="#FFFFFF"
+                    android:backgroundTint="#FFFFFF"
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="7:00"
+                    android:textColor="@color/colorBlack0" />
+
+            </TableRow>
+            <TableRow
+
+                >
+                <TextView
+                    android:text="Tos"
+                    android:gravity="left"
+                    android:padding="3dip"
+                    android:textColor="@color/colorBlack0"
+                    />
+                <TextView
+                    android:text="10:30"
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:textColor="@color/colorBlack0"
+                    />
+
+            </TableRow>
+            <TableRow
+
+                >
+                <TextView
+                    android:text="Fiebre 38°"
+                    android:gravity="left"
+                    android:padding="3dip"
+                    android:textColor="@color/colorBlack0"
+                    />
+                <TextView
+                    android:text="13:30"
+                    android:gravity="right"
+                    android:textColor="@color/colorBlack0"
+                    android:padding="3dip" />
+
+            </TableRow>
+
+            <TableRow
+
+                >
+
+                <TextView
+                    android:gravity="left"
+                    android:padding="3dip"
+                    android:text="Dolor de cuerpo"
+                    android:textColor="@color/colorBlack0" />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:textColor="@color/colorBlack0"
+                    android:text="16:30" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fotos"
+            android:textColor="@color/colorBlack0"
+            android:textSize="@dimen/dim_text_size_20"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/recipe"
+                        >
+                    </ImageView>
+                </LinearLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Diagnóstico médico:"
+            android:textColor="@color/colorBlack0"
+            android:textSize="@dimen/dim_text_size_20"
+            android:layout_marginTop="@dimen/dim_text_size_20"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/border"
+            android:layout_margin="30dp"
+            />
+
+    </LinearLayout>
+ 
+
+
+</LinearLayout>
