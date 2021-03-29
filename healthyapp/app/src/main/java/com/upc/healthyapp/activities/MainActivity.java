@@ -41,10 +41,6 @@ public class MainActivity extends AppCompatActivity{
         Toolbar toolbar = findViewById(R.id.tb_titulo);
         toolbar.setNavigationIcon(R.drawable.ic_baseline_exit_to_app_24);
         toolbar.setTitle(R.string.app_name);
-
-        toolbar.setNavigationOnClickListener(v ->
-                UtlFunciones.IniciarActividad(this, LoginActivity.class, true));
-
         setSupportActionBar(toolbar);
 
         citaFragment = new CitaFragment();
@@ -119,6 +115,9 @@ public class MainActivity extends AppCompatActivity{
                 InfoPersonalFragment mInfoPersonalFragment = InfoPersonalFragment.newInstance();
                 //mInfoPersonalFragment.setTargetFragment(ActividadPrincipalFragment.this, 100);
                 mInfoPersonalFragment.show(fm, "fragment_dialog");
+                break;
+            default:
+                UtlFunciones.IniciarActividad(this, LoginActivity.class, true);
                 break;
         }
         return super.onOptionsItemSelected(item);

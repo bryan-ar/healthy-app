@@ -33,12 +33,12 @@
             android:orientation="vertical"
             android:layout_weight="80"
             android:padding="@dimen/dim_15dp"
-            android:background="#2E9AFE">
+            android:background="@color/colorSkyBlue0">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Medicina Interna"
-                android:textColor="#ddd"/>
+                android:textColor="#eeeeee"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

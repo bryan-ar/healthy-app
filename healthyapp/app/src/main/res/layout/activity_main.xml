@@ -24,6 +24,7 @@
             app:contentInsetStart="0dp"
             app:contentInsetStartWithNavigation="0dp"
             app:layout_scrollFlags="scroll|enterAlways"
+            android:background="@color/colorPrimaryDark"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:titleMarginStart="@dimen/dim_15dp"
             app:titleTextAppearance="@style/Toolbar.TitleText" />
@@ -46,7 +47,7 @@
         app:centre_button_color="@color/centre_button_color"
         app:inactive_item_color="@color/colorBlack0"
         app:active_centre_button_icon_color="@color/colorWhite"
-        app:space_background_color="@color/colorPrimary"
+        app:space_background_color="@color/colorPrimaryDark"
         app:centre_button_icon="@drawable/ic_baseline_home_24"
         app:space_item_icon_size="@dimen/space_item_icon_default_size"
         app:inactive_centre_button_icon_color="@color/colorWhite"
