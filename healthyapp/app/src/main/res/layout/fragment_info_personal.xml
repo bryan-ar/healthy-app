@@ -34,12 +34,193 @@
         android:orientation="vertical"
         android:paddingTop="@dimen/dim_8dp">
 
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="330dp">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/dr2" />
+
+
+        </LinearLayout>
+
+
+
+        <!-- DATOS -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="2dp"
+            android:layout_marginTop="5dp">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="3dp"
+                android:src="@drawable/history"
+
+                />
+
+
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Historia:"
+            android:textColor="@color/colorPrimary"
+             android:textStyle="italic"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#8499901"
+                android:textStyle="italic"
+
+                android:layout_marginStart="10dp"
+                />
+
+
+
+
+        </LinearLayout>
+
+        <!-- DATOS -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:padding="2dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/person"
+                android:layout_marginRight="3dp"
+
+                />
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ACÁ VA LA INFORMACIÓN PERSONAL" />
+            android:text=" Nombres Completos:"
+            android:textColor="@color/colorPrimary"
+             android:textStyle="italic"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Milagros Angulo Perez"
+                android:textStyle="italic"
+
+                android:layout_marginStart="10dp"
+                />
+
+        </LinearLayout>
+        <!-- DATOS -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/celular"
+                android:layout_marginRight="3dp"           />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Celular:"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="italic"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="965449390"
+                android:textStyle="italic"
+
+                android:layout_marginStart="10dp" />
+
+        </LinearLayout>
+        <!-- DATOS -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/home"
+                android:layout_marginRight="3dp"           />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Dirección:"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="italic"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calle Incahuasi 451 - San Miguel"
+                android:textStyle="italic"
+
+                android:layout_marginStart="10dp" />
+
+        </LinearLayout>
+
+        <!-- DATOS -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/blood"
+                android:layout_marginRight="3dp"           />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tipo de Sangre:"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="italic"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="O-"
+                android:textStyle="italic"
+
+                android:layout_marginStart="10dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
+
+
+
+
+
+
 
     <LinearLayout
         android:id="@+id/ly_footer"
