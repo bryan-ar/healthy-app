@@ -28,15 +28,22 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:titleMarginStart="@dimen/dim_15dp"
             app:titleTextAppearance="@style/Toolbar.TitleText" />
+
+        <Button
+            android:id="@+id/logoutr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/str_logout" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/app_bar_layout"
-        android:layout_marginBottom="@dimen/dim_50dp"
-        android:id="@+id/content">
-    </FrameLayout>
+        android:layout_marginTop="0dp"
+        android:id="@+id/content"
+        android:layout_marginBottom="@dimen/dim_50dp"/>
 
     <com.luseen.spacenavigation.SpaceNavigationView
         android:id="@+id/space"

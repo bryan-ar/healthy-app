@@ -7,12 +7,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.luseen.spacenavigation.SpaceItem;
 import com.luseen.spacenavigation.SpaceNavigationView;
 import com.luseen.spacenavigation.SpaceOnClickListener;
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity{
     private MapsFragment mapsFragment;
     private RecetaFragment recetaFragment;
     private boolean bAgregar = true;
+    Button logoutr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +71,6 @@ public class MainActivity extends AppCompatActivity{
                 setFragment(homeFragment);
                 navigationView.changeCenterButtonIcon(R.drawable.ic_baseline_add_24);
                 navigationView.changeCurrentItem(-1);
-
                 if(bAgregar){
                     FragmentManager fm = getSupportFragmentManager();
                     NuevaCitaFragment mNuevaCitaFragment = NuevaCitaFragment.newInstance();
@@ -106,11 +109,27 @@ public class MainActivity extends AppCompatActivity{
                 Toast.makeText(MainActivity.this, itemIndex + " " + itemName, Toast.LENGTH_SHORT).show();
             }
         });
+
+        //cerrar sesion
+     logoutr = (Button)findViewById(R.id.logoutr);
+        logoutr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                finish();
+            }
+        });
+        //fin cerrar sesion
     }
+
+
+
 
     private void setFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.content, fragment);
+        //fragmentTransaction.replace(R.id.cont, fragment);
         fragmentTransaction.commit();
     }
 

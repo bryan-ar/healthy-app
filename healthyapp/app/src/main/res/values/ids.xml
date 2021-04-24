@@ -3,4 +3,5 @@
     <item name="btn_login" type="id" />
     <item name="ly_olvido_contrasenia" type="id" />
     <item name="btn_comunicate" type="id" />
+
 </resources>

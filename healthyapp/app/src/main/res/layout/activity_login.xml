@@ -20,6 +20,12 @@
             android:background="@drawable/sh_backgroun_login"
             android:orientation="vertical">
 
+            <Button
+                android:id="@+id/btRegis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Registrarse" />
+
             <LinearLayout
                 android:layout_width="220dp"
                 android:layout_height="0dp"
@@ -213,6 +219,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="invisible" />
+
         </RelativeLayout>
     </LinearLayout>
 
@@ -234,4 +241,5 @@
             android:textSize="@dimen/dim_text_size_13" />
 
     </LinearLayout>
+
 </LinearLayout>
