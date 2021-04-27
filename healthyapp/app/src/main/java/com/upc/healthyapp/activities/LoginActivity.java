@@ -15,7 +15,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.upc.healthyapp.R;
 import com.upc.healthyapp.utilities.UtlFunciones;
 
@@ -31,11 +30,11 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-        et_username =(EditText) findViewById(R.id.et_username);
-        et_password =(EditText) findViewById(R.id.et_password);
+        et_username =(EditText) findViewById(R.id.et_email);
+        et_password =(EditText) findViewById(R.id.et_passwordr);
         btLogin = (Button) findViewById(R.id.btn_login);
         btContactUs = (Button)findViewById(R.id.btn_comunicate);
-        btRegis = (Button)findViewById(R.id.btRegis);
+        btRegis = (Button)findViewById(R.id.btn_registrar);
         mAuth = FirebaseAuth.getInstance();
 
         //LOGIN
