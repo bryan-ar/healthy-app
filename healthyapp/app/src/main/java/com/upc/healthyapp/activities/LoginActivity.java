@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //LOGIN
 
-        btLogin.setOnClickListener(new View.OnClickListener() {
+        /*btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = et_username.getText().toString();
@@ -80,13 +80,13 @@ public class LoginActivity extends AppCompatActivity {
                 });
 
             }
+        });*/
+
+
+
+        btLogin.setOnClickListener(view -> {
+            UtlFunciones.IniciarActividad(this, MainActivity.class, true);
         });
-
-
-
-        //btLogin.setOnClickListener(view -> {
-          //  UtlFunciones.IniciarActividad(this, MainActivity.class, true);
-        //});
 
 
         //--------------

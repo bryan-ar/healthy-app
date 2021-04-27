@@ -126,7 +126,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp">
 
@@ -141,16 +141,20 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:id="@+id/imgFoto1"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="0.5"
                         android:layout_margin="@dimen/dim_5dp"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/recipe" />
                     <ImageView
+                        android:id="@+id/imgFoto2"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="0.5"
                         android:layout_margin="@dimen/dim_5dp"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/recipe" />
                 </LinearLayout>
             </LinearLayout>
