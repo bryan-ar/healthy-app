@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.navigation.CitaFragment">
+    tools:context=".fragments.navigation.CitaFragment"
+    android:padding="@dimen/dim_30dp"
+
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,9 +19,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Registro de sintomas"
+            android:textAlignment="center"
+            android:textStyle="bold"
             android:textColor="@color/colorBlack0"
             android:textSize="@dimen/dim_text_size_20" />
-
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -116,6 +120,7 @@
             </TableRow>
 
         </TableLayout>
+
 
         <TextView
             android:layout_width="match_parent"

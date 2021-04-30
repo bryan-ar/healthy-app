@@ -66,7 +66,23 @@ public class MainActivity extends AppCompatActivity{
         navigationView.addSpaceItem(new SpaceItem("", R.drawable.ic_baseline_map_24));
         navigationView.addSpaceItem(new SpaceItem("", R.drawable.ic_baseline_fact_check_24));
         navigationView.changeCurrentItem(-1);
-        setFragment(homeFragment);
+        String codigoFragment = getIntent().getStringExtra("codigoFragment");
+        switch (codigoFragment){
+
+            case "2" :
+                setFragment(recetaFragment);  break;
+            case "3" :
+                setFragment(citaFragment);  break;
+            case "4" :
+                setFragment(mapsFragment);  break;
+            case "5" :
+                setFragment(diagnosticFragment);  break;
+            default :
+                setFragment(homeFragment);  break;
+
+        }
+
+
 
         navigationView.setSpaceOnClickListener(new SpaceOnClickListener() {
             @Override

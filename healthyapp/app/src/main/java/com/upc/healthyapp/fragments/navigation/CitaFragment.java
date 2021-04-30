@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -53,7 +54,7 @@ public class CitaFragment extends Fragment {
         imgFoto1 = rootView.findViewById(R.id.imgFoto1);
         imgFoto2 = rootView.findViewById(R.id.imgFoto2);
 
-        EnableRuntimePermission();
+       // EnableRuntimePermission();
 
         imgFoto1.setOnClickListener(new View.OnClickListener() {
             @Override
