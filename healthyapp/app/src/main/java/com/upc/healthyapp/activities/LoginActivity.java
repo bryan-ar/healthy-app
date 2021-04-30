@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         btLogin.setOnClickListener(view -> {
-            UtlFunciones.IniciarActividad(this, MainActivity.class, true);
+            UtlFunciones.IniciarActividad(this, MenuPriActivity.class, true);
         });
 
 

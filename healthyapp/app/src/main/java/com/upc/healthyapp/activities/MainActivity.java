@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.luseen.spacenavigation.SpaceItem;
 import com.luseen.spacenavigation.SpaceNavigationView;
 import com.luseen.spacenavigation.SpaceOnClickListener;
+import com.upc.healthyapp.Interfaces.IComunicaFragments;
 import com.upc.healthyapp.R;
 import com.upc.healthyapp.fragments.navigation.CitaFragment;
 import com.upc.healthyapp.fragments.navigation.DiagnosticFragment;
@@ -28,6 +29,8 @@ import com.upc.healthyapp.fragments.navigation.RecetaFragment;
 import com.upc.healthyapp.modals.InfoPersonalFragment;
 import com.upc.healthyapp.modals.NuevaCitaFragment;
 import com.upc.healthyapp.utilities.UtlFunciones;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity{
     SpaceNavigationView navigationView;
@@ -155,4 +158,8 @@ public class MainActivity extends AppCompatActivity{
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
 }
