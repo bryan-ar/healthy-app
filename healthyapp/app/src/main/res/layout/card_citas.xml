@@ -36,16 +36,17 @@
                     android:layout_height="30dp"
                     android:src="@drawable/ic_noun_doctor_386892"
                     android:layout_marginTop="@dimen/dim_5dp"/>
+
                 <TextView
                     android:id="@+id/tvNombreDoctor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cornejo Barreda Felix Eduardo"
-                    android:textSize="12sp"
-                    android:textColor="@color/colorWhite"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="@dimen/dim_2dp"
-                    android:layout_marginLeft="5dp"/>
+                    android:text="Cornejo Barreda Felix Eduardo"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12sp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -101,13 +102,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_centerInParent="true">
+
                 <TextView
                     android:id="@+id/tvMes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="16dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
                     android:text="ABR"
-                    android:textColor="@color/colorWhite"
-                    android:layout_gravity="center" />
+                    android:textColor="@color/colorWhite" />
                 <TextView
                     android:id="@+id/tvDia"
                     android:layout_width="wrap_content"
