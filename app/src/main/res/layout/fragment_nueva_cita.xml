@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/sh_line_header"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ly_titulo_cabecera"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim_45dp"
+        android:layout_gravity="center"
+        android:background="@drawable/drw_shaded_line"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Nueva Cita"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimaryDark" />
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dim_10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dim_16dp"
+            android:orientation="horizontal">
+
+            <!--frecuencia-->
+
+            <LinearLayout
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="16dp"
+                android:layout_weight="0.5"
+                android:gravity="center_vertical|center_horizontal"
+                android:minWidth="@dimen/dim_100dp"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="Especialidad"
+                    android:textSize="11sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:background="@drawable/background_input"
+                    android:gravity="center_vertical"
+                    android:padding="4dp">
+
+                    <Spinner
+                        android:id="@+id/spEspecialidades"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- calendario   -->
+
+
+            <LinearLayout
+                android:layout_width="@dimen/dim_200dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="Fecha"
+                    android:textSize="11sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:background="@drawable/background_input"
+                    android:gravity="center_vertical"
+                    android:minWidth="@dimen/dim_100dp"
+                    android:padding="4dp">
+
+                    <EditText
+                        android:id="@+id/etFecha"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/colorBgInput"
+                        android:textColor="@color/colorBlack2"
+                        android:clickable="true"
+                        android:drawableEnd="@drawable/icon_calendar"
+                        android:drawableTint="@color/colorPrimary"
+                        android:focusable="false"
+                        android:inputType="date"
+                        android:longClickable="false"
+                        android:textSize="@dimen/dim_text_size_12" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dim_10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Doctores"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_marginStart="@dimen/dim_8dp"
+                android:layout_marginTop="@dimen/dim_8dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDoctores"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dim_8dp"
+                android:layout_marginTop="@dimen/dim_8dp"
+                android:layout_marginRight="@dimen/dim_8dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dim_10dp">
+
+        <LinearLayout
+            android:layout_width="196dp"
+            android:layout_height="196dp"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_circle_blue"
+            android:backgroundTint="@color/colorBlue"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total a Pagar"
+                android:textColor="@color/colorWhite" />
+
+            <TextView
+                android:id="@+id/txt_total_pagar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="S/40"
+                android:textColor="@color/colorWhite"
+                android:textSize="32dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/ly_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dim_15dp"
+        android:background="@drawable/drw_line_header_nav_bt"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_pagar"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dim_2dp"
+            android:layout_marginEnd="@dimen/dim_12dp"
+            android:layout_weight="0.2"
+            android:background="@android:color/transparent"
+            android:gravity="end|center"
+            android:text="Pagar"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/dim_text_size_14"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/bt_cerrar"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dim_12dp"
+            android:layout_marginEnd="@dimen/dim_12dp"
+            android:background="@android:color/transparent"
+            android:gravity="end|center"
+            android:text="Cerrar"
+            android:textAllCaps="true"
+            android:textColor="@color/colorBlack2"
+            android:textSize="@dimen/dim_text_size_14" />
+    </LinearLayout>
+
+</LinearLayout>

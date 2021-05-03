@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.navigation.DiagnosticFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="25dp"
+        android:paddingVertical="25dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:text="Identificador de Cita:"
+            android:textColor="@color/colorBlack0"
+            android:textSize="20dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            android:text="Paciente:"
+            android:textColor="@color/colorBlack0"
+            android:textSize="20dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            android:text="Documento:"
+            android:textColor="@color/colorBlack0"
+            android:textSize="20dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            android:text="__________________________________________________"
+            android:textColor="@color/colorBlack0"
+            android:textSize="20dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            android:text="Médico:"
+            android:textColor="@color/colorBlack0"
+            android:textSize="20dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            android:text="Cód. Médico:"
+            android:textColor="@color/colorBlack0"
+            android:textSize="20dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginTop="30sp"
+            android:text="Comentario:"
+            android:textColor="@color/colorBlack0"
+            android:textSize="20dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/border"
+            android:layout_margin="30dp"
+            />
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#009688</color>
+    <color name="colorPrimaryDark">#4ba3c7</color>
+    <color name="colorAccent">#b6ffff</color>
+    <color name="colorSecondary">#f0f4c3</color>
+    <color name="colorSecondaryDark">#bdc192</color>
+    <color name="colorSecondaryAccent">#fffff6</color>
+    <color name="action_mode">#ff00897b</color>
+
+    <color name="colorOrange0">#E86807</color>
+    <color name="colorOrange1">#F47A05</color>
+    <color name="colorOrange2">#F47A05</color>
+    <color name="colorOrange3">#F58900</color>
+    <color name="colorOrange4">#F98E00</color>
+    <color name="colorOrange5">#FE9A68</color>
+    <color name="colorOrange6">#FDD6B0</color>
+    <color name="colorOrange7">#FFE7CF</color>
+    <color name="colorOrange8">#FFAA5E</color>
+
+    <color name="colorWhite0">#FFFFFF</color>
+    <color name="colorWhite1">#66ffffff</color>
+    <color name="colorWhite2">#F5F5F6</color>
+
+    <color name="colorGrey0">#555555</color>
+    <color name="colorGrey1">#757575</color>
+    <color name="colorGrey2">#717172</color>
+    <color name="colorGrey3">#979797</color>
+    <color name="colorGrey4">#74000000</color>
+    <color name="colorGrey5">#B2B2B2</color>
+    <color name="colorGrey6">#DFDFDF</color>
+
+    <color name="colorGreen0">#00B22D</color>
+    <color name="colorGreen1">#02c734</color>
+    <color name="colorGreen2">#02cf36</color>
+
+    <color name="colorSkyBlue0">#FF2ED3C4</color>
+    <color name="colorSkyBlue1">#baffff</color>
+    <color name="colorSkyBlue2">#009688</color>
+
+    <color name="colorRed0">#B50C0C</color>
+    <color name="colorRed1">#f92003</color>
+    <color name="colorRed2">#F73D24</color>
+    <color name="colorRed3">#fc533c</color>
+    <color name="colorBlack0">#000000</color>
+    <color name="colorBlack1">#de000000</color>
+    <color name="colorBlack2">#8a000000</color>
+    <color name="naranja_claro">#F8910F</color>
+    <color name="colorWhite">#ffffff</color>
+
+    <color name="colorBgInput">#F9F9F9</color>
+    <color name="colorBlue">#182A83</color>
+</resources>

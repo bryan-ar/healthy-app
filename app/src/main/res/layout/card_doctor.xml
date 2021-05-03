@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp"
+    app:cardMaxElevation="10dp"
+    app:cardPreventCornerOverlap="true"
+    android:layout_marginBottom="@dimen/dim_8dp"
+    android:layout_marginEnd="@dimen/dim_8dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/foto_doctor"
+            android:layout_width="@dimen/dim_100dp"
+            android:layout_height="@dimen/dim_80dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/nombre_doctor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/foto_doctor"
+            android:paddingLeft="@dimen/dim_5dp"
+            android:paddingRight="@dimen/dim_5dp"
+            android:paddingTop="@dimen/dim_5dp"
+            android:textColor="@color/colorBlack0"
+            android:textSize="@dimen/dim_text_size_12" />
+
+        <TextView
+            android:id="@+id/especialidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nombre_doctor"
+            android:paddingBottom="@dimen/dim_5dp"
+            android:paddingLeft="@dimen/dim_5dp"
+            android:paddingRight="@dimen/dim_5dp"
+            android:textSize="@dimen/dim_text_size_12" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
