@@ -66,29 +66,29 @@ public class MenuPriActivity extends AppCompatActivity implements View.OnClickLi
         switch (v.getId()){
             case R.id.btn_citas  :
                 i = new Intent(this, MainActivity.class );
-                i.putExtra("codigoFragment", 1);
+                i.putExtra("codigoFragment", "1");
                 startActivity(i);
                 break;
             case R.id.btn_recetas :
                 i = new Intent(this, MainActivity.class);
-                i.putExtra("codigoFragment", 2);
+                i.putExtra("codigoFragment", "2");
                 startActivity(i);
                 break;
             case R.id.btn_sintomas :
                 i = new Intent(this, MainActivity.class);
-                i.putExtra("codigoFragment", 3);
+                i.putExtra("codigoFragment", "3");
                 startActivity(i);
                 break;
             case R.id.btn_cm :
                 i = new Intent(this, MainActivity.class);
-                i.putExtra("codigoFragment", 4);
+                i.putExtra("codigoFragment", "4");
                 startActivity(i);
                 break;
             case R.id.btn_call : i = new Intent(this, ContactUsActivity.class); startActivity(i); break;
             //cambiar clase
             case R.id.btn_comentarios
                : i = new Intent(this, RecetaFragment.class);
-                i.putExtra("codigoFragment", 5);
+                i.putExtra("codigoFragment", "5");
             startActivity(i);
             break;
             default:break;

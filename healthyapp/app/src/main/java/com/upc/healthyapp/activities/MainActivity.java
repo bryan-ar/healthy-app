@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity{
     private MapsFragment mapsFragment;
     private RecetaFragment recetaFragment;
     private boolean bAgregar = true;
-    Button logoutr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +80,6 @@ public class MainActivity extends AppCompatActivity{
                 setFragment(homeFragment);  break;
 
         }
-
-
 
         navigationView.setSpaceOnClickListener(new SpaceOnClickListener() {
             @Override
@@ -129,17 +126,6 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        //cerrar sesion
-     logoutr = (Button)findViewById(R.id.logoutr);
-        logoutr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                finish();
-            }
-        });
-        //fin cerrar sesion
     }
 
 
@@ -148,7 +134,6 @@ public class MainActivity extends AppCompatActivity{
     private void setFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.content, fragment);
-        //fragmentTransaction.replace(R.id.cont, fragment);
         fragmentTransaction.commit();
     }
 
@@ -169,6 +154,7 @@ public class MainActivity extends AppCompatActivity{
                 mInfoPersonalFragment.show(fm, "fragment_dialog");
                 break;
             default:
+                FirebaseAuth.getInstance().signOut();
                 UtlFunciones.IniciarActividad(this, LoginActivity.class, true);
                 break;
         }

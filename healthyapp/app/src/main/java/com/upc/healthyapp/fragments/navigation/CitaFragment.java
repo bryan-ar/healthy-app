@@ -5,19 +5,37 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextClock;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.upc.healthyapp.R;
+import com.upc.healthyapp.adapters.SintomaAdapter;
+import com.upc.healthyapp.modals.NuevaCitaFragment;
+import com.upc.healthyapp.modals.NuevoSintomaFragment;
+import com.upc.healthyapp.models.DAOSintoma;
+import com.upc.healthyapp.models.Sintoma;
+import com.upc.healthyapp.utilities.RecyclerItemClickListener;
+
+import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -26,10 +44,16 @@ import static android.app.Activity.RESULT_OK;
  * Use the {@link CitaFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CitaFragment extends Fragment {
+public class CitaFragment extends Fragment implements NuevoSintomaFragment.InterfaceCita {
 
     ImageView imgFoto1, imgFoto2;
+    TextView tvNuevoSintoma;
     public static final int RequestPermissionCode = 1;
+    RecyclerView recyclerView;
+
+    DAOSintoma daoSintoma;
+    ArrayList<Sintoma> listaSintomas = new ArrayList<>();
+    SintomaAdapter sintomaAdapter;
 
     public CitaFragment() {
         // Required empty public constructor
@@ -43,6 +67,8 @@ public class CitaFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        daoSintoma= new DAOSintoma(getContext());
     }
 
     @Override
@@ -51,8 +77,56 @@ public class CitaFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_cita, container, false);
 
+        tvNuevoSintoma = rootView.findViewById(R.id.tvNuevoSintoma);
         imgFoto1 = rootView.findViewById(R.id.imgFoto1);
         imgFoto2 = rootView.findViewById(R.id.imgFoto2);
+        recyclerView = rootView.findViewById(R.id.rvSintomas);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        listaSintomas = daoSintoma.listarSintomas();
+
+        sintomaAdapter = new SintomaAdapter(getActivity(), listaSintomas);
+        recyclerView.setAdapter(sintomaAdapter);
+
+        listarSintomas();
+
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(getActivity(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        int id = listaSintomas.get(position).getId();
+
+                        FragmentManager fm = getActivity().getSupportFragmentManager();
+                        NuevoSintomaFragment mNuevoSintomaFragment = NuevoSintomaFragment.newInstance(id);
+                        mNuevoSintomaFragment.setTargetFragment(CitaFragment.this, 100);
+                        mNuevoSintomaFragment.show(fm, "fragment_dialog");
+                    }
+
+                    @RequiresApi(api = Build.VERSION_CODES.M)
+                    @Override public void onLongItemClick(View view, int position) {
+                        // do whatever
+                        // context menu
+                        view.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
+                            @Override
+                            public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+                                int id = listaSintomas.get(position).getId();
+
+                                contextMenu.setHeaderTitle("SELECCIONE UNA OPCIÓN");
+                                contextMenu.add(0, id, 0, "Eliminar");
+                            }
+                        });
+                    }
+                })
+        );
+
+        tvNuevoSintoma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                NuevoSintomaFragment mNuevoSintomaFragment = NuevoSintomaFragment.newInstance(0);
+                mNuevoSintomaFragment.setTargetFragment(CitaFragment.this, 100);
+                mNuevoSintomaFragment.show(fm, "fragment_dialog");
+            }
+        });
 
        // EnableRuntimePermission();
 
@@ -73,6 +147,27 @@ public class CitaFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        daoSintoma.eliminarSintoma(id);
+        try {
+            actualizarLista();
+            Toast.makeText(getContext(), "Síntoma eliminado", Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return true;
+    }
+
+    private void listarSintomas(){
+        listaSintomas = daoSintoma.listarSintomas();
+        sintomaAdapter = new SintomaAdapter(getActivity(), listaSintomas);
+        recyclerView.setAdapter(sintomaAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     public void EnableRuntimePermission(){
@@ -113,5 +208,11 @@ public class CitaFragment extends Fragment {
                 }
                 break;
         }
+    }
+
+    @Override
+    public void actualizarLista() throws Exception {
+        listaSintomas = daoSintoma.listarSintomas();
+        sintomaAdapter.actualizarSintomas(listaSintomas);
     }
 }

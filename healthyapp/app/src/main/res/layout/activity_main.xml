@@ -29,12 +29,6 @@
             app:titleMarginStart="@dimen/dim_15dp"
             app:titleTextAppearance="@style/Toolbar.TitleText" />
 
-        <Button
-            android:id="@+id/logoutr"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/str_logout" />
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout

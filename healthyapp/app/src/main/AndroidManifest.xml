@@ -10,13 +10,10 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- Normal Permission -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -28,7 +25,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthyApp"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".activities.FotosActivity"></activity>
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -48,12 +45,12 @@
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.ContactUsActivity" />
         <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.MenuPriActivity"/>
+        <activity android:name=".activities.MenuPriActivity" />
         <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".activities.SplashActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

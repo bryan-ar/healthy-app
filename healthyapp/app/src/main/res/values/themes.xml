@@ -20,18 +20,14 @@
         <item name="android:textSize">@dimen/dim_text_size_16</item>
         <item name="android:textColor">@color/colorBlack0</item>
     </style>
-    <style name="CalenderViewCustom" parent="Theme.AppCompat">
+    <style name="CalenderViewCustom" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">@android:color/holo_blue_dark</item>
         <item name="colorPrimary">@android:color/darker_gray</item>
-        <item name="android:textColorPrimary">@color/colorPrimary</item>
+        <item name="buttonBarPositiveButtonStyle">@android:color/darker_gray</item>
     </style>
 
-    <style name="CalenderViewDateCustomText" parent="android:TextAppearance.DeviceDefault.Small">
-        <item name="android:textColor">@android:color/holo_orange_dark</item>
-    </style>
-
-    <style name="CalenderViewWeekCustomText" parent="android:TextAppearance.DeviceDefault.Small">
-        <item name="android:textColor">@android:color/holo_green_dark</item>
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/colorPrimaryDark</item>
     </style>
 
 </resources>

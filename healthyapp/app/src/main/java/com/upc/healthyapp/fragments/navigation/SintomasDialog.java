@@ -22,7 +22,7 @@ public class SintomasDialog extends AppCompatDialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.layout_sintomas, null);
+        View view = inflater.inflate(R.layout.fragment_nuevo_sintoma, null);
          builder.setView(view)
                  .setTitle("Sintomas")
                  .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -37,8 +37,7 @@ public class SintomasDialog extends AppCompatDialogFragment {
 
                      }
                  });
-         editTextSintomas = view.findViewById(R.id.sintoma_regis);
-         editTextFechas = view.findViewById(R.id.date_regis);
+
 
         return builder.create();
     }

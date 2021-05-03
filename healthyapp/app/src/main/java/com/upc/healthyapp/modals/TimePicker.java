@@ -2,9 +2,9 @@ package com.upc.healthyapp.modals;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
-import android.graphics.Color;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,15 +17,15 @@ import com.upc.healthyapp.R;
 
 import java.util.Calendar;
 
-public class DatePicker extends DialogFragment {
-    DatePickerDialog.OnDateSetListener onDateSet;
+public class TimePicker extends DialogFragment {
+    TimePickerDialog.OnTimeSetListener onTimeSet;
 
-    public static DatePicker newInstance(){
-        DatePicker frag = new DatePicker();
+    public static TimePicker newInstance(){
+        TimePicker frag = new TimePicker();
         return frag;
     }
 
-    public DatePicker(){}
+    public TimePicker(){}
 
     @Nullable
     @Override
@@ -38,16 +38,12 @@ public class DatePicker extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         Calendar mCalender = Calendar.getInstance();
-        int year = mCalender.get(Calendar.YEAR);
-        int month = mCalender.get(Calendar.MONTH);
-        int dayOfMonth = mCalender.get(Calendar.DAY_OF_MONTH);
-
-        DatePickerDialog dialog = new DatePickerDialog(getActivity(), R.style.DialogTheme, onDateSet, year, month, dayOfMonth);
-        return dialog;
-
+        int hour = mCalender.get(Calendar.HOUR);
+        int minute = mCalender.get(Calendar.MINUTE);
+        return new TimePickerDialog(getActivity(), R.style.DialogTheme, onTimeSet, hour, minute, DateFormat.is24HourFormat(getActivity()));
     }
 
-    public void setCallBack(DatePickerDialog.OnDateSetListener onDate) {
-        onDateSet = onDate;
+    public void setCallBack(TimePickerDialog.OnTimeSetListener onTime) {
+        onTimeSet = onTime;
     }
 }
