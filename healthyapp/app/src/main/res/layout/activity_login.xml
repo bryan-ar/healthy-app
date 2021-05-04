@@ -83,7 +83,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
-
     <Button
         android:id="@id/btn_comunicate"
         android:layout_width="wrap_content"
@@ -112,14 +111,5 @@
         android:textSize="@dimen/dim_text_size_15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_registrar" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        android:background="@drawable/button_rounded_x"
-        tools:layout_editor_absoluteX="119dp"
-        tools:layout_editor_absoluteY="446dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

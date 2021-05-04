@@ -29,7 +29,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
         et_username =(EditText) findViewById(R.id.et_email);
         et_password =(EditText) findViewById(R.id.et_passwordr);
         btLogin = (Button) findViewById(R.id.btn_login);
@@ -39,9 +38,11 @@ public class LoginActivity extends AppCompatActivity {
 
         //LOGIN
 
-        /*btLogin.setOnClickListener(new View.OnClickListener() {
+        btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+
                 String email = et_username.getText().toString();
                 String password = et_password.getText().toString();
 
@@ -50,8 +51,6 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(),MainActivity.class));
                     finish();
                 }
-                //fin de validación de usario activo
-
 
                 if (TextUtils.isEmpty(email)){
                     et_username.setError("Escribe el correo");
@@ -70,8 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(LoginActivity.this, "Ingresaste", Toast.LENGTH_SHORT).show();
-                            //startActivity(new Intent(getApplicationContext(),RegisterActivity.class));
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            UtlFunciones.IniciarActividad(LoginActivity.this, MenuPriActivity.class, true);
                         }else{
                             Toast.makeText(LoginActivity.this, "Ocurrio un error"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -79,14 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                 });
 
             }
-        });*/
-
-
-
-        btLogin.setOnClickListener(view -> {
-            UtlFunciones.IniciarActividad(this, MenuPriActivity.class, true);
         });
-
 
         //--------------
         btContactUs.setOnClickListener(view -> {

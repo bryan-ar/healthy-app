@@ -8,6 +8,10 @@ public class CitaModel {
     private String sDia;
     private String sHora;
 
+    public CitaModel(){
+
+    }
+
     public CitaModel(String sNombreDoctor, String sNombrePaciente, String sLinkReunion,
                      String sMes, String sDia, String sHora) {
         this.sNombreDoctor = sNombreDoctor;

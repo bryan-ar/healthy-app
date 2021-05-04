@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.ContextMenu;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +29,14 @@ import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.upc.healthyapp.R;
 import com.upc.healthyapp.adapters.SintomaAdapter;
 import com.upc.healthyapp.modals.NuevaCitaFragment;
@@ -35,7 +45,13 @@ import com.upc.healthyapp.models.DAOSintoma;
 import com.upc.healthyapp.models.Sintoma;
 import com.upc.healthyapp.utilities.RecyclerItemClickListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -46,10 +62,11 @@ import static android.app.Activity.RESULT_OK;
  */
 public class CitaFragment extends Fragment implements NuevoSintomaFragment.InterfaceCita {
 
-    ImageView imgFoto1, imgFoto2;
+    ImageView imgFoto1;
     TextView tvNuevoSintoma;
     public static final int RequestPermissionCode = 1;
     RecyclerView recyclerView;
+    Button btEnviar;
 
     DAOSintoma daoSintoma;
     ArrayList<Sintoma> listaSintomas = new ArrayList<>();
@@ -79,7 +96,9 @@ public class CitaFragment extends Fragment implements NuevoSintomaFragment.Inter
 
         tvNuevoSintoma = rootView.findViewById(R.id.tvNuevoSintoma);
         imgFoto1 = rootView.findViewById(R.id.imgFoto1);
-        imgFoto2 = rootView.findViewById(R.id.imgFoto2);
+
+        btEnviar = rootView.findViewById(R.id.btEnviarCita);
+
         recyclerView = rootView.findViewById(R.id.rvSintomas);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -128,7 +147,7 @@ public class CitaFragment extends Fragment implements NuevoSintomaFragment.Inter
             }
         });
 
-       // EnableRuntimePermission();
+       EnableRuntimePermission();
 
         imgFoto1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,15 +157,67 @@ public class CitaFragment extends Fragment implements NuevoSintomaFragment.Inter
             }
         });
 
-        imgFoto2.setOnClickListener(new View.OnClickListener() {
+        btEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, 8);
+
+                for (Sintoma sintoma : listaSintomas) {
+                    RegistrarSintomaHTTP(sintoma);
+                }
             }
         });
 
         return rootView;
+    }
+
+    private void RegistrarSintomaHTTP(Sintoma sintoma) {
+        String url = "http://healthyupc.atwebpages.com/index.php/sintomas";
+
+        StringRequest peticion = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast toast = Toast.makeText(getActivity(), "Se registró correctamente", Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parametros = new HashMap<>();
+                parametros.put("id_cita", String.valueOf(1));
+                parametros.put("desc_sint", String.valueOf(sintoma.getDescripcion()));
+                parametros.put("fec_sint", String.valueOf(sintoma.getFecha()));
+                parametros.put("hora", String.valueOf(sintoma.getHora()));
+                parametros.put("tipo_sint", String.valueOf(1));
+                parametros.put("foto_sint", "");
+                return parametros;
+            }
+        };
+
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        queue.add(peticion);
+    }
+
+    private JSONArray parsearSintomasJson() {
+        JSONArray array = new JSONArray();
+
+        for (Sintoma sintoma :listaSintomas) {
+            JSONObject obj=new JSONObject();
+            try {
+                obj.put("oSintoma",sintoma);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            array.put(obj);
+        }
+
+        return array;
     }
 
     @Override
@@ -189,9 +260,6 @@ public class CitaFragment extends Fragment implements NuevoSintomaFragment.Inter
             switch (requestCode){
                 case 7:
                     imgFoto1.setImageBitmap(bitmap);
-                    break;
-                case 8:
-                    imgFoto2.setImageBitmap(bitmap);
                     break;
             }
         }

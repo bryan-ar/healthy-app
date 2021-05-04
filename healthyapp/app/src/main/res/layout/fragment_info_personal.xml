@@ -44,7 +44,7 @@
                 android:layout_height="50dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginRight="@dimen/dim_15dp"
-                android:src="@drawable/dr2" />
+                android:src="@drawable/dr4" />
         </RelativeLayout>
 
 
@@ -101,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Milagros Angulo Perez"
+                android:text="Juan Abanto Morales"
                 android:textStyle="italic" />
 
         </LinearLayout>

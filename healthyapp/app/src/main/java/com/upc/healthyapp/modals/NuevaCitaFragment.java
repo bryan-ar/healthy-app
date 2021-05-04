@@ -1,6 +1,7 @@
 package com.upc.healthyapp.modals;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -13,10 +14,12 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -25,17 +28,31 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.upc.healthyapp.R;
 import com.upc.healthyapp.adapters.CitasAdapter;
 import com.upc.healthyapp.adapters.DoctoresAdapter;
 import com.upc.healthyapp.models.CitaModel;
 import com.upc.healthyapp.models.DoctorModel;
+import com.upc.healthyapp.models.Especialidad;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,7 +66,9 @@ public class NuevaCitaFragment extends DialogFragment {
     private RecyclerView rvDoctores;
     private ArrayList<DoctorModel> doctoresModelArrayList;
     Spinner spEspecialidades;
-    String[] especialidades = new String[]{"Seleccione", "Medicina Interna", "Cardiología", "Traumatología"};
+    String[] especialidades;
+    private ArrayList<Especialidad> especialidadesArrayList;
+    String fecha, hora;
 
     public NuevaCitaFragment() {
         // Required empty public constructor
@@ -84,29 +103,21 @@ public class NuevaCitaFragment extends DialogFragment {
         rvDoctores = view.findViewById(R.id.rvDoctores);
         spEspecialidades = view.findViewById(R.id.spEspecialidades);
 
-        doctoresModelArrayList = new ArrayList<>();
-        doctoresModelArrayList.add(new DoctorModel("Doctor 1", "Medicina Interna",
-                "https://media.istockphoto.com/photos/friendly-doctor-at-the-hospital-picture-id511583494?k=6&m=511583494&s=612x612&w=0&h=-8azV9sjiTx9dPBAIxy0I9g15pUVs4gTVT7gGsjx9J4="));
-        doctoresModelArrayList.add(new DoctorModel("Doctor 2", "Medicina Interna",
-                "https://orientacion.universia.edu.pe/imgs2011/imagenes/shuttersto-2016_09_16_190709.jpg"));
-        doctoresModelArrayList.add(new DoctorModel("Doctor 3", "Medicina Interna",
-                "https://st.depositphotos.com/1281717/1353/i/950/depositphotos_13532382-stock-photo-portrait-of-happy-smiling-young.jpg"));
-        doctoresModelArrayList.add(new DoctorModel("Doctor 4", "Medicina Interna",
-                "https://fm105.com.mx/wp-content/uploads/2018/05/las-mejores-anecdotas-de-la-relacion-entre-pacientes-y-medicos.jpg"));
-        doctoresModelArrayList.add(new DoctorModel("Doctor 5", "Medicina Interna",
-                "https://k60.kn3.net/taringa/A/5/4/0/7/2/unwerfron/02C.png"));
-        doctoresModelArrayList.add(new DoctorModel("Doctor 6", "Medicina Interna",
-                "https://st2.depositphotos.com/1011434/5480/i/950/depositphotos_54809145-stock-photo-beautiful-young-female-doctor.jpg"));
+        CargarEspecialidadesHTTP();
 
-        DoctoresAdapter doctoresAdapter = new DoctoresAdapter(getActivity(), doctoresModelArrayList);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        spEspecialidades.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getActivity(),"", Toast.LENGTH_LONG).show();
+                Especialidad oEspecialidad = obtenerEspecialidad(String.valueOf(adapterView.getSelectedItem()));
+                CargarDoctoresHTTP(oEspecialidad);
+            }
 
-        rvDoctores.setLayoutManager(linearLayoutManager);
-        rvDoctores.setAdapter(doctoresAdapter);
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
-        ArrayAdapter<String> especialidadesAdapter = new ArrayAdapter<>(getActivity(),R.layout.spinner_item, especialidades);
-        //especialidadesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spEspecialidades.setAdapter(especialidadesAdapter);
+            }
+        });
 
         etFecha = view.findViewById(R.id.etFecha);
         btPagar = view.findViewById(R.id.bt_pagar);
@@ -119,6 +130,103 @@ public class NuevaCitaFragment extends DialogFragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
+    private Especialidad obtenerEspecialidad(String especialidad){
+
+        for (Especialidad esp: especialidadesArrayList) {
+            if(esp.getEspecialidad() == especialidad){
+                return esp;
+            }
+        }
+
+        return new Especialidad();
+    }
+
+    private void CargarEspecialidadesHTTP() {
+        String url = "http://healthyupc.atwebpages.com/index.php/especialidades";
+        StringRequest peticion = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+
+                    especialidades = new String[jsonArray.length()];
+                    especialidadesArrayList = new ArrayList<>();
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        int id = jsonObject.getInt("id_especialidad");
+                        String especialidad = jsonObject.getString("nom_esp");
+                        especialidades[i] = especialidad;
+                        Especialidad oEspecialidad = new Especialidad(id, especialidad);
+
+                        especialidadesArrayList.add(oEspecialidad);
+                    }
+
+                    ArrayAdapter<String> especialidadesAdapter = new ArrayAdapter<>(getActivity(),R.layout.spinner_item, especialidades);
+                    spEspecialidades.setAdapter(especialidadesAdapter);
+                }
+                catch (JSONException e){
+                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        RequestQueue cola = Volley.newRequestQueue(getActivity());
+        cola.add(peticion);
+    }
+
+    private void CargarDoctoresHTTP(Especialidad oEspecialidad) {
+        String url = "http://healthyupc.atwebpages.com/index.php/doctores";
+        StringRequest peticion = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+
+                    doctoresModelArrayList = new ArrayList<>();
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                        String sNombreDoctor = jsonObject.getString("nomc_doc");
+                        int iEspecialidad = jsonObject.getInt("id_especialidad");
+                        String sFotoDoctor = "https://orientacion.universia.edu.pe/imgs2011/imagenes/shuttersto-2016_09_16_190709.jpg";
+
+                        if(iEspecialidad == oEspecialidad.getId_especialidad()){
+                            DoctorModel doctor = new DoctorModel(sNombreDoctor,
+                                    oEspecialidad.getEspecialidad(), sFotoDoctor);
+                            doctoresModelArrayList.add(doctor);
+                        }
+
+                    }
+
+                    DoctoresAdapter doctoresAdapter = new DoctoresAdapter(getActivity(), doctoresModelArrayList);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),
+                            LinearLayoutManager.HORIZONTAL, false);
+
+                    rvDoctores.setLayoutManager(linearLayoutManager);
+                    rvDoctores.setAdapter(doctoresAdapter);
+                }
+                catch (JSONException e){
+                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        RequestQueue cola = Volley.newRequestQueue(getActivity());
+        cola.add(peticion);
+    }
+
     private DatePickerDialog.OnDateSetListener onDate = new DatePickerDialog.OnDateSetListener() {
 
         @Override
@@ -127,9 +235,25 @@ public class NuevaCitaFragment extends DialogFragment {
             mCalender.set(Calendar.YEAR, year);
             mCalender.set(Calendar.MONTH, month);
             mCalender.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            String selectedDate = sdf.format(mCalender.getTime());
-            etFecha.setText(selectedDate);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM");
+            fecha = sdf.format(mCalender.getTime());
+
+            TimePicker mTimePickerDialogFragment = new TimePicker();
+            mTimePickerDialogFragment.setCallBack(onTime);
+            mTimePickerDialogFragment.show(getParentFragmentManager(), "DATE PICK");
+        }
+    };
+
+    private TimePickerDialog.OnTimeSetListener onTime = new TimePickerDialog.OnTimeSetListener() {
+
+        @Override
+        public void onTimeSet(android.widget.TimePicker timePicker, int hour, int minute) {
+            Calendar mCalender = Calendar.getInstance();
+            mCalender.set(Calendar.HOUR, hour);
+            mCalender.set(Calendar.MINUTE, minute);
+
+            hora = ("00"+ hour).substring(("00"+ hour).length()-2, ("00"+ hour).length()) + ":" + ("00"+ minute).substring(("00"+ minute).length()-2, ("00"+ minute).length());
+            etFecha.setText(fecha + " " + hora);
         }
     };
 
@@ -147,8 +271,84 @@ public class NuevaCitaFragment extends DialogFragment {
 
         @Override
         public void onClick(View view) {
-            getDialog().dismiss();
+            CitaModel cita = new CitaModel();
+            cita.setsDia(etFecha.getText().toString().substring(0,2));
+            cita.setsMes(ObtenerMes(etFecha.getText().toString().substring(3,5)));
+            cita.setsHora(etFecha.getText().toString().substring(6,11));
+
+            RegistrarCitaHTTP(cita);
         }
+    }
+
+    private String ObtenerMes(String substring) {
+        switch (substring){
+            case "01":
+                return "Enero";
+            case "02":
+                return "Febrero";
+            case "03":
+                return "Marzo";
+            case "04":
+                return "Abril";
+            case "05":
+                return "Mayo";
+            case "06":
+                return "Junio";
+            case "07":
+                return "Julio";
+            case "08":
+                return "Agosto";
+            case "09":
+                return "Setiembre";
+            case "10":
+                return "Octubre";
+            case "11":
+                return "Noviembre";
+            case "12":
+                return "Diciembre";
+        }
+
+        return "";
+    }
+
+    private void RegistrarCitaHTTP(CitaModel cita) {
+        String url = "http://healthyupc.atwebpages.com/index.php/citas";
+
+        StringRequest peticion = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast toast = Toast.makeText(getActivity(), "Se registró correctamente", Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+
+                getDialog().dismiss();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parametros = new HashMap<>();
+                parametros.put("id_paciente", String.valueOf(1));
+                parametros.put("id_doctor", String.valueOf(4));
+                parametros.put("diag_cit", "Tiene síntomas de COVID; sin embargo se debe descartar.");
+                parametros.put("est_cit", "0");
+                parametros.put("com_cit", "Reposo absoluto. Neumonía leve, resultado COVID negativo");
+                parametros.put("dia", String.valueOf(cita.getsDia()));
+                parametros.put("mes", String.valueOf(cita.getsMes()));
+                parametros.put("anio", String.valueOf(cita.getsHora()));
+                parametros.put("total_pagar", String.valueOf(40));
+                parametros.put("especialidad", String.valueOf(spEspecialidades.getSelectedItem()));
+                return parametros;
+            }
+        };
+
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        queue.add(peticion);
     }
 
     class isOnClickCerrar implements View.OnClickListener{

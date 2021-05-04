@@ -40,7 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
         btn_registrar = (Button)findViewById(R.id.btn_registrar);
         //validación de usuario activo
         if (firebaseAuth.getCurrentUser()!=null){
-        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
            finish();
         }
         //fin de validación de usario activo
@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
                                 Toast.makeText(RegisterActivity.this, "Usuario registrado con exito", Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                startActivity(new Intent(getApplicationContext(),MenuPriActivity.class));
                             }else{
                                 Toast.makeText(RegisterActivity.this, "Ocurrió un error", Toast.LENGTH_SHORT).show();
 

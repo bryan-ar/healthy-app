@@ -64,7 +64,7 @@
                     android:gravity="center_vertical"
                     android:textSize="14sp"
                     android:paddingStart="@dimen/dim_12dp"
-                    android:text="Fotos"
+                    android:text="Archivo"
                     android:textColor="@color/colorBlack0" />
 
             </androidx.cardview.widget.CardView>
@@ -89,55 +89,16 @@
                         android:layout_weight="0.5"
                         android:layout_margin="@dimen/dim_5dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/recipe" />
-                    <ImageView
-                        android:id="@+id/imgFoto2"
-                        android:padding="@dimen/dim_12dp"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5"
-                        android:layout_margin="@dimen/dim_5dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/recipe" />
+                        android:tooltipText="Tap aquí" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
             <Button
+                android:id="@+id/btEnviarCita"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Enviar" />
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                app:cardCornerRadius="@dimen/dim_12dp"
-                android:layout_height="@dimen/dim_30dp"
-                android:layout_marginTop="@dimen/dim_20dp"
-                app:cardBackgroundColor="@color/colorGrey6">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:textSize="14sp"
-                    android:paddingStart="@dimen/dim_12dp"
-                    android:text="Diagnostico del Médico"
-                    android:textColor="@color/colorBlack0" />
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                app:cardCornerRadius="@dimen/dim_12dp"
-                android:layout_height="@dimen/dim_150dp"
-                android:layout_marginTop="@dimen/dim_6dp"
-                app:cardBackgroundColor="@color/colorGrey6">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="@dimen/dim_6dp"/>
-
-            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
     </ScrollView>
